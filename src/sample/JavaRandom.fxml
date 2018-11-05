@@ -12,12 +12,12 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <GridPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.JavaRandom">
-    <fx:define>
-        <ToggleGroup fx:id="toggleGroup1"/>
-    </fx:define>
+    <!--<fx:define>-->
+        <!--<ToggleGroup fx:id="tg1"/>-->
+    <!--</fx:define>-->
 
-    <RadioButton text="Встроенный" GridPane.rowIndex="1" GridPane.columnSpan="2" fx:id="rbrn" toggleGroup="$toggleGroup1"/>
-    <RadioButton text="Собственный" GridPane.rowIndex="2" GridPane.columnSpan="2" fx:id="rbmyrn" toggleGroup="$toggleGroup1"/>
+    <RadioButton text="Встроенный" GridPane.rowIndex="1" GridPane.columnSpan="2" fx:id="rbrn"/>
+    <RadioButton text="Собственный" GridPane.rowIndex="2" GridPane.columnSpan="2" fx:id="rbmyrn"/>
 
     <Label text="lowvalue = " GridPane.columnIndex="0" GridPane.rowIndex="3" />
     <TextField fx:id="tflv" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -30,7 +30,11 @@
 
     <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="7">
+    <Button onAction="#newAC" text="Rxx!" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <Button onAction="#newAC1" text="Rxx!" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <Button onAction="#newMC" text="Rxy!" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="11">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>
@@ -42,9 +46,12 @@
     <columnConstraints>
         <ColumnConstraints maxWidth="108.0" minWidth="31.0" prefWidth="101.0" />
         <ColumnConstraints maxWidth="116.0" minWidth="39.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="476.0" minWidth="418.0" prefWidth="419.0" />
+        <ColumnConstraints hgrow="ALWAYS" />
     </columnConstraints>
     <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />

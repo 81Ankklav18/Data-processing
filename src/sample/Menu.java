@@ -48,4 +48,9 @@ public class Menu implements Initializable {
         ReadDat rd = new ReadDat();
         rd.show();
     }
+
+    public void newPGWindow(ActionEvent actionEvent) throws IOException {
+        Polygarmonic pg = new Polygarmonic();
+        pg.show();
+    }
 }

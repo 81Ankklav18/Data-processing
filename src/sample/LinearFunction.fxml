@@ -44,7 +44,7 @@
     <columnConstraints>
         <ColumnConstraints maxWidth="69.0" minWidth="16.0" prefWidth="63.0" />
         <ColumnConstraints maxWidth="123.0" minWidth="48.0" prefWidth="56.0" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="492.0" minWidth="481.0" prefWidth="481.0" />
+        <ColumnConstraints hgrow="ALWAYS"  />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />

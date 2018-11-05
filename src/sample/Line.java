@@ -100,4 +100,80 @@ public class Line {
 
         return series2;
     }
+
+    public XYChart.Series<Double, Double> AutoCorrelation(XYChart.Series<Double, Double> series1)
+    {
+        double avg = 0;
+
+        for (int i = 0; i < N; i++)
+        {
+            avg += series1.getData().get(i).getYValue();
+        }
+        avg /= N;
+
+        XYChart.Series<Double, Double> series2 = new XYChart.Series<>();
+        double val = 0;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N-i; j++)
+            {
+                val += ((series1.getData().get(j).getYValue() - avg)*(series1.getData().get(i+j).getYValue() - avg))/
+                        ((series1.getData().get(j).getYValue() - avg)*(series1.getData().get(j).getYValue() - avg));
+            }
+            series2.getData().add(new XYChart.Data<>(Double.valueOf(i), val));
+        }
+
+        return series2;
+    }
+
+    public XYChart.Series<Double, Double> AutoCov(XYChart.Series<Double, Double> series1)
+    {
+        double avg = 0;
+
+        for (int i = 0; i < N; i++)
+        {
+            avg += series1.getData().get(i).getYValue();
+        }
+        avg /= N;
+
+        XYChart.Series<Double, Double> series2 = new XYChart.Series<>();
+        double val = 0;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N-i; j++)
+            {
+                val += ((series1.getData().get(j).getYValue() - avg)*(series1.getData().get(i+j).getYValue() - avg)) / N;
+            }
+            series2.getData().add(new XYChart.Data<>(Double.valueOf(i), val));
+        }
+
+        return series2;
+    }
+
+    public XYChart.Series<Double, Double> MutualCorrelation(XYChart.Series<Double, Double> series1, XYChart.Series<Double, Double> series2)
+    {
+        double avg1 = 0;
+        double avg2 = 0;
+
+        for (int i = 0; i < N; i++)
+        {
+            avg1 += series1.getData().get(i).getYValue();
+            avg2 += series2.getData().get(i).getYValue();
+        }
+        avg1 /= N;
+        avg2 /= N;
+
+        XYChart.Series<Double, Double> series3 = new XYChart.Series<>();
+        double val = 0;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N-i; j++)
+            {
+                val += ((series1.getData().get(j).getYValue() - avg1)*(series2.getData().get(i+j).getYValue() - avg2)) / N;
+            }
+            series3.getData().add(new XYChart.Data<>(Double.valueOf(i), val));
+        }
+
+        return series2;
+    }
 }

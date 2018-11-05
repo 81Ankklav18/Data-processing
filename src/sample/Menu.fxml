@@ -17,6 +17,8 @@
 
     <Button text="Построить график из файла" fx:id="ReadDatButton" onAction="#newRDWindow" GridPane.rowIndex="2"/>
 
+    <Button text="Построить полигармоническую функцию" fx:id="PolygarmonicButton" onAction="#newPGWindow" GridPane.rowIndex="3"/>
+
     <rowConstraints>
         <RowConstraints/>
         <RowConstraints/>
