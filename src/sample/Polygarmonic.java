@@ -100,11 +100,71 @@ public class Polygarmonic extends Line implements Initializable {
         return series2;
     }
 
+    public XYChart.Series<Double, Double> Furie(XYChart.Series<Double, Double> series1) {
+        double[] re = new double[N];
+        double[] im = new double[N];
+
+        XYChart.Series<Double, Double> series2;
+        series2 = new XYChart.Series<>();
+        double val;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+            re[i] /= N;
+            im[i] /= N;
+        }
+
+        for (int i = 0; i < N / 2; i++)
+        {
+            series2.getData().add(new XYChart.Data<>((double) i, Math.sqrt(Math.pow(re[i], 2) + Math.pow(im[i], 2))));
+        }
+        return series2;
+    }
+
+    public XYChart.Series<Double, Double> ReversFurie(XYChart.Series<Double, Double> series1) {
+        double[] re = new double[N];
+        double[] im = new double[N];
+
+        XYChart.Series<Double, Double> series2;
+        series2 = new XYChart.Series<>();
+        double val;
+        for (int i = 0; i < N/2; i++)
+        {
+            for (int j = 0; j < N/2; j++)
+            {
+                re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+            re[i] /= N;
+            im[i] /= N;
+        }
+
+        for (int i = 0; i < N / 2; i++)
+        {
+            series2.getData().add(new XYChart.Data<>((double) i, re[i] +im[i]));
+        }
+        return series2;
+    }
+
     public void newAdd(ActionEvent actionEvent) {
 
         printLine(chart1, addSeries(getSeries()));
         //setValue(Integer.parseInt(tfA.getText()), Integer.parseInt(tff.getText()), Double.parseDouble(tft.getText()), Integer.parseInt(tfN.getText()));
 
 
+    }
+
+    public void newFurie(ActionEvent actionEvent) {
+        setValue(Integer.parseInt(tfA.getText()), Integer.parseInt(tff.getText()), Double.parseDouble(tft.getText()), Integer.parseInt(tfN.getText()));
+        printLine(chart1, Furie(getSeries()));
+    }
+
+    public void newRFurie(ActionEvent actionEvent) {
+        setValue(Integer.parseInt(tfA.getText()), Integer.parseInt(tff.getText()), Double.parseDouble(tft.getText()), Integer.parseInt(tfN.getText()));
+        printLine(chart1, ReversFurie(Furie(getSeries())));
     }
 }

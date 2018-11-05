@@ -115,7 +115,7 @@ public class JavaRandom extends Line implements Initializable {
         return series1;
     }
 
-    public XYChart.Series<Double, Double> Furie(XYChart.Series<Double, Double> series1) throws InterruptedException {
+    public XYChart.Series<Double, Double> Furie(XYChart.Series<Double, Double> series1) {
         double[] re = new double[N];
         double[] im = new double[N];
 
@@ -126,9 +126,11 @@ public class JavaRandom extends Line implements Initializable {
         {
             for (int j = 0; j < N; j++)
             {
-                re[i] = series1.getData().get(i).getYValue() * Math.cos((2 * Math.PI * i * j) / N) / N;
-                im[i] = series1.getData().get(i).getYValue() * Math.sin((2 * Math.PI * i * j) / N) / N;
+                re[i] += series1.getData().get(i).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im[i] += series1.getData().get(i).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
             }
+            re[i] /= N;
+            im[i] /= N;
         }
 
         for (int i = 0; i < N / 2; i++)
@@ -201,7 +203,7 @@ public class JavaRandom extends Line implements Initializable {
         printLine(chart1, MutualCorrelation(getSeries(), getSeriesMy()));
     }
 
-    public void newFr(ActionEvent actionEvent) throws InterruptedException {
+    public void newFr(ActionEvent actionEvent) {
         setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
         printLine(chart1, Furie(getSeries()));
     }

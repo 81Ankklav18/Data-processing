@@ -25,8 +25,10 @@
 
     <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.rowIndex="5" />
     <Button onAction="#newAdd" text="AddIt!" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <Button onAction="#newFurie" text="Furie" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <Button onAction="#newRFurie" text="ReversFurie" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.rowSpan="7" GridPane.vgrow="ALWAYS">
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.rowSpan="8" GridPane.vgrow="ALWAYS">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>
