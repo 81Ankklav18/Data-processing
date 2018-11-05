@@ -8,11 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-
-import java.awt.*;
+import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -63,10 +60,10 @@ public class LinearFunction extends Line implements Initializable {
 
     public XYChart.Series<Double, Double> getSeries()
     {
-        series1 = new XYChart.Series<Double, Double>();
+        series1 = new XYChart.Series<>();
         for (int i = 0; i < N; i++)
         {
-            series1.getData().add(new XYChart.Data<>(Double.valueOf(i), Double.valueOf(k * i + b)));
+            series1.getData().add(new XYChart.Data<>((double) i, k * i + b));
         }
 
         return series1;

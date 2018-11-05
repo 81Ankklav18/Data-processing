@@ -10,10 +10,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <GridPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.JavaRandom">
+    <fx:define>
+        <ToggleGroup fx:id="toggleGroup1"/>
+    </fx:define>
 
-    <RadioButton text="Встроенный" GridPane.rowIndex="1" GridPane.columnSpan="2" fx:id="rbrn"/>
-    <RadioButton text="Собственный" GridPane.rowIndex="2" GridPane.columnSpan="2" fx:id="rbmyrn"/>
+    <RadioButton text="Встроенный" GridPane.rowIndex="1" GridPane.columnSpan="2" fx:id="rbrn" toggleGroup="$toggleGroup1"/>
+    <RadioButton text="Собственный" GridPane.rowIndex="2" GridPane.columnSpan="2" fx:id="rbmyrn" toggleGroup="$toggleGroup1"/>
 
     <Label text="lowvalue = " GridPane.columnIndex="0" GridPane.rowIndex="3" />
     <TextField fx:id="tflv" GridPane.columnIndex="1" GridPane.rowIndex="3" />

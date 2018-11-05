@@ -62,7 +62,7 @@ public class JavaRandom extends Line implements Initializable {
         double min = Double.POSITIVE_INFINITY;
         double[] temp = new double[N];
 
-        series1 = new XYChart.Series<Double, Double>();
+        series1 = new XYChart.Series<>();
         double val;
         for (int i = 0; i < N; i++)
         {
@@ -80,7 +80,7 @@ public class JavaRandom extends Line implements Initializable {
 
         for (int i = 0; i < N; i++)
         {
-            series1.getData().add(new XYChart.Data<>(Double.valueOf(i), Double.valueOf((temp[i]-min)/(max-min)-0.5d)));
+            series1.getData().add(new XYChart.Data<>((double) i, (temp[i] - min) / (max - min) - 0.5d));
         }
 
         return series1;
@@ -91,12 +91,11 @@ public class JavaRandom extends Line implements Initializable {
         double min = Double.POSITIVE_INFINITY;
         double[] temp = new double[N];
 
-        series1 = new XYChart.Series<Double, Double>();
-        double rn = 0;
+        series1 = new XYChart.Series<>();
         double val;
         for (int i = 0; i < N; i++)
         {
-            val = Math.sin(System.currentTimeMillis()/2)/2+0.5d;
+            val = Math.sin(System.currentTimeMillis()/2.d)/2.d+0.5d;
             sleep(100);
             temp[i] = val;
             if(val > max)
@@ -111,7 +110,7 @@ public class JavaRandom extends Line implements Initializable {
 
         for (int i = 0; i < N; i++)
         {
-            series1.getData().add(new XYChart.Data<>(Double.valueOf(i), Double.valueOf((temp[i]-min)/(max-min)-0.5d)));
+            series1.getData().add(new XYChart.Data<>((double) i, (temp[i] - min) / (max - min) - 0.5d));
         }
         return series1;
     }
@@ -134,14 +133,14 @@ public class JavaRandom extends Line implements Initializable {
     }
 
     public void newBuildIt(ActionEvent actionEvent) throws InterruptedException {
-        if (rbrn.isSelected() == true)
+        if (rbrn.isSelected())
         {
             setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
             printLine(chart1, getSeries());
         }
-        if(rbmyrn.isSelected() == true)
+        if(rbmyrn.isSelected())
         {
-            setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
+            setValue(1, 1, Integer.parseInt(tfN.getText()));
             printLine(chart1, getSeriesMy());
         }
     }

@@ -6,20 +6,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    String s1 = "";
-    String s2 = "";
+    private String s1 = "";
+    private String s2 = "";
     @FXML
     LineChart<Number, Number> chart1;
     @FXML
