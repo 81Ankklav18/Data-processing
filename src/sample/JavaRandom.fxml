@@ -33,8 +33,9 @@
     <Button onAction="#newAC" text="Rxx!" GridPane.columnIndex="1" GridPane.rowIndex="7" />
     <Button onAction="#newAC1" text="Rxx!" GridPane.columnIndex="1" GridPane.rowIndex="8" />
     <Button onAction="#newMC" text="Rxy!" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <Button onAction="#newFr" text="Furie!" GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="11">
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="12">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>

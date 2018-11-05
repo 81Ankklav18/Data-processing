@@ -115,6 +115,29 @@ public class JavaRandom extends Line implements Initializable {
         return series1;
     }
 
+    public XYChart.Series<Double, Double> Furie(XYChart.Series<Double, Double> series1) throws InterruptedException {
+        double[] re = new double[N];
+        double[] im = new double[N];
+
+        XYChart.Series<Double, Double> series2;
+        series2 = new XYChart.Series<>();
+        double val;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                re[i] = series1.getData().get(i).getYValue() * Math.cos((2 * Math.PI * i * j) / N) / N;
+                im[i] = series1.getData().get(i).getYValue() * Math.sin((2 * Math.PI * i * j) / N) / N;
+            }
+        }
+
+        for (int i = 0; i < N / 2; i++)
+        {
+            series2.getData().add(new XYChart.Data<>((double) i, Math.sqrt(Math.pow(re[i], 2) + Math.pow(im[i], 2))));
+        }
+        return series2;
+    }
+
     public void show() throws IOException {
         Stage stageLF = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("JavaRandom.fxml"));
@@ -176,5 +199,10 @@ public class JavaRandom extends Line implements Initializable {
         setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
 
         printLine(chart1, MutualCorrelation(getSeries(), getSeriesMy()));
+    }
+
+    public void newFr(ActionEvent actionEvent) throws InterruptedException {
+        setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
+        printLine(chart1, Furie(getSeries()));
     }
 }
