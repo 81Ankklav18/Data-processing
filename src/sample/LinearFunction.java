@@ -53,6 +53,10 @@ public class LinearFunction extends Line implements Initializable {
     TextField tfN;
     @FXML
     TextField tfShift;
+    @FXML
+    TextField tfCountOfPoints;
+    @FXML
+    TextField tfSpikeDeep;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {/*...*/}
@@ -92,8 +96,6 @@ public class LinearFunction extends Line implements Initializable {
     }
 
     public void newShift(ActionEvent actionEvent) {
-        chart1.getData().clear();
-
         setValue(Double.parseDouble(tfk.getText()),
                 Double.parseDouble(tfb.getText()),
                 Integer.parseInt(tfN.getText())
@@ -106,5 +108,14 @@ public class LinearFunction extends Line implements Initializable {
         LinearFunction lf = new LinearFunction(4, 3, 1000);
         JavaRandom jr = new JavaRandom(3, 4, 1000);
         Line.operationSum(lf.getSeries(), jr.getSeries());
+    }
+
+    public void newSpike(ActionEvent actionEvent) {
+        setValue(Double.parseDouble(tfk.getText()),
+                Double.parseDouble(tfb.getText()),
+                Integer.parseInt(tfN.getText())
+        );
+
+        printLine(chart1, getSeries(), spike(getSeries(), Integer.parseInt(tfCountOfPoints.getText()), Integer.parseInt(tfSpikeDeep.getText())));
     }
 }

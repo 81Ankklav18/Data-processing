@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -15,6 +16,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+import static java.lang.Thread.sleep;
 
 public class JavaRandom extends Line implements Initializable {
     private int lowvalue;
@@ -45,18 +48,71 @@ public class JavaRandom extends Line implements Initializable {
     TextField tfhv;
     @FXML
     TextField tfN;
+    @FXML
+    RadioButton rbrn;
+    @FXML
+    RadioButton rbmyrn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {/*...*/}
 
     public XYChart.Series<Double, Double> getSeries()
     {
+        double max = Double.NEGATIVE_INFINITY;
+        double min = Double.POSITIVE_INFINITY;
+        double[] temp = new double[N];
+
         series1 = new XYChart.Series<Double, Double>();
+        double val;
         for (int i = 0; i < N; i++)
         {
-            series1.getData().add(new XYChart.Data<>(Double.valueOf(i), Double.valueOf(rand.nextInt(highvalue)+lowvalue)));
+            val = rand.nextInt(highvalue)+lowvalue;
+            temp[i] = val;
+            if(val > max)
+            {
+                max = val;
+            }
+            if (val < min)
+            {
+                min = val;
+            }
         }
 
+        for (int i = 0; i < N; i++)
+        {
+            series1.getData().add(new XYChart.Data<>(Double.valueOf(i), Double.valueOf((temp[i]-min)/(max-min)-0.5d)));
+        }
+
+        return series1;
+    }
+
+    public XYChart.Series<Double, Double> getSeriesMy() throws InterruptedException {
+        double max = Double.NEGATIVE_INFINITY;
+        double min = Double.POSITIVE_INFINITY;
+        double[] temp = new double[N];
+
+        series1 = new XYChart.Series<Double, Double>();
+        double rn = 0;
+        double val;
+        for (int i = 0; i < N; i++)
+        {
+            val = Math.sin(System.currentTimeMillis()/2)/2+0.5d;
+            sleep(100);
+            temp[i] = val;
+            if(val > max)
+            {
+                max = val;
+            }
+            if (val < min)
+            {
+                min = val;
+            }
+        }
+
+        for (int i = 0; i < N; i++)
+        {
+            series1.getData().add(new XYChart.Data<>(Double.valueOf(i), Double.valueOf((temp[i]-min)/(max-min)-0.5d)));
+        }
         return series1;
     }
 
@@ -77,9 +133,16 @@ public class JavaRandom extends Line implements Initializable {
         super.N = N;
     }
 
-    public void newBuildIt(ActionEvent actionEvent) {
-        setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
-
-        printLine(chart1, getSeries());
+    public void newBuildIt(ActionEvent actionEvent) throws InterruptedException {
+        if (rbrn.isSelected() == true)
+        {
+            setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
+            printLine(chart1, getSeries());
+        }
+        if(rbmyrn.isSelected() == true)
+        {
+            setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
+            printLine(chart1, getSeriesMy());
+        }
     }
 }

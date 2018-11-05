@@ -9,20 +9,24 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.scene.control.RadioButton?>
 <GridPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.JavaRandom">
 
-    <Label text="lowvalue = " GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <TextField fx:id="tflv" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <RadioButton text="Встроенный" GridPane.rowIndex="1" GridPane.columnSpan="2" fx:id="rbrn"/>
+    <RadioButton text="Собственный" GridPane.rowIndex="2" GridPane.columnSpan="2" fx:id="rbmyrn"/>
 
-    <Label text="highvalue = " GridPane.columnIndex="0" GridPane.rowIndex="2" />
-    <TextField fx:id="tfhv" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="lowvalue = " GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <TextField fx:id="tflv" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <Label text="N = " GridPane.columnIndex="0" GridPane.rowIndex="3" />
-    <TextField fx:id="tfN" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <Label text="highvalue = " GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <TextField fx:id="tfhv" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-    <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <Label text="N = " GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <TextField fx:id="tfN" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="4">
+    <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="7">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>
@@ -37,6 +41,9 @@
         <ColumnConstraints hgrow="ALWAYS" maxWidth="476.0" minWidth="418.0" prefWidth="419.0" />
     </columnConstraints>
     <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />

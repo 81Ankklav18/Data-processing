@@ -23,10 +23,16 @@
     <Label text="Сдвиг = " GridPane.columnIndex="0" GridPane.rowIndex="4" />
     <TextField fx:id="tfShift" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-    <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-    <Button onAction="#newShift" text="Shift!" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <Label text="Количество точек = " GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <TextField fx:id="tfCountOfPoints" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <Label text="Глубина выброса = " GridPane.columnIndex="0" GridPane.rowIndex="6" />
+    <TextField fx:id="tfSpikeDeep" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="6">
+    <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+    <Button onAction="#newShift" text="ShiftIt!" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <Button onAction="#newSpike" text="SpikeIt!" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="8">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>
@@ -41,6 +47,8 @@
         <ColumnConstraints hgrow="ALWAYS" maxWidth="492.0" minWidth="481.0" prefWidth="481.0" />
     </columnConstraints>
     <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
