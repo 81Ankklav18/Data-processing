@@ -147,6 +147,7 @@ public class JavaRandom extends Line implements Initializable {
         XYChart.Series<Double, Double> series2;
         series2 = new XYChart.Series<>();
         double val;
+
         for (int i = 0; i < N; i++)
         {
             for (int j = 0; j < N; j++)
@@ -154,13 +155,33 @@ public class JavaRandom extends Line implements Initializable {
                 re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
                 im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
             }
+            re[i] /= N;
+            im[i] /= N;
         }
 
-        for (int i = 0; i < N / 2; i++)
+        for (int i = 0; i < N; i++)
         {
-            series2.getData().add(new XYChart.Data<>((double) i, re[i] +im[i]));
+            series2.getData().add(new XYChart.Data<>((double) i, re[i]+im[i]));
         }
-        return series2;
+        XYChart.Series<Double, Double> series3;
+        series3 = new XYChart.Series<>();
+        double[] re1 = new double[N];
+        double[] im1 = new double[N];
+
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                re1[i] += series2.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im1[i] += series2.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+        }
+
+        for (int i = 0; i < N; i++)
+        {
+            series3.getData().add(new XYChart.Data<>((double) i, re1[i] + im1[i]));
+        }
+        return series3;
     }
 
     public void show() throws IOException {
@@ -241,11 +262,11 @@ public class JavaRandom extends Line implements Initializable {
     public void newRFr(ActionEvent actionEvent) throws InterruptedException {
         if (rbrn.isSelected()) {
             setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
-            printLine(chart1, ReversFurie(Furie(getSeriesMy())));
+            printLine(chart1, ReversFurie(getSeriesMy()));
         }
         if(rbmyrn.isSelected()) {
             setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
-            printLine(chart1, ReversFurie(Furie(getSeriesMy())));
+            printLine(chart1, ReversFurie(getSeriesMy()));
 
         }
     }

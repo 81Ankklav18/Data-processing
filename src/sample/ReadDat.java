@@ -103,6 +103,7 @@ public class ReadDat extends Line implements Initializable {
         XYChart.Series<Float, Float> series2;
         series2 = new XYChart.Series<>();
         float val;
+
         for (int i = 0; i < N; i++)
         {
             for (int j = 0; j < N; j++)
@@ -110,13 +111,33 @@ public class ReadDat extends Line implements Initializable {
                 re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
                 im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
             }
+            re[i] /= N;
+            im[i] /= N;
         }
 
         for (int i = 0; i < N; i++)
         {
-            series2.getData().add(new XYChart.Data<>((float) i, (float)re[i] + im[i]));
+            series2.getData().add(new XYChart.Data<>((float) i, re[i]+im[i]));
         }
-        return series2;
+        XYChart.Series<Float, Float> series3;
+        series3 = new XYChart.Series<>();
+        float[] re1 = new float[N];
+        float[] im1 = new float[N];
+
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                re1[i] += series2.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im1[i] += series2.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+        }
+
+        for (int i = 0; i < N; i++)
+        {
+            series3.getData().add(new XYChart.Data<>((float) i, (float)re1[i] + im1[i]));
+        }
+        return series3;
     }
 
     public void show() throws IOException {
@@ -139,6 +160,6 @@ public class ReadDat extends Line implements Initializable {
     }
 
     public void newRFIt(ActionEvent actionEvent) throws IOException {
-        printLineFl(chart1, ReversFurie(Furie(getSeries())));
+        printLineFl(chart1, ReversFurie(getSeries()));
     }
 }

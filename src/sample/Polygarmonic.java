@@ -152,19 +152,21 @@ public class Polygarmonic extends Line implements Initializable {
         }
         XYChart.Series<Double, Double> series3;
         series3 = new XYChart.Series<>();
+        double[] re1 = new double[N];
+        double[] im1 = new double[N];
 
         for (int i = 0; i < N; i++)
         {
             for (int j = 0; j < N; j++)
             {
-                re[i] += series2.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
-                im[i] += series2.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+                re1[i] += series2.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im1[i] += series2.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
             }
         }
 
         for (int i = 0; i < N; i++)
         {
-            series3.getData().add(new XYChart.Data<>((double) i, re[i] + im[i]));
+            series3.getData().add(new XYChart.Data<>((double) i, re1[i] + im1[i]));
         }
         return series3;
     }
