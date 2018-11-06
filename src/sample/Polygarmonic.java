@@ -47,6 +47,8 @@ public class Polygarmonic extends Line implements Initializable {
     TextField tft;
     @FXML
     TextField tfN;
+    @FXML
+    TextField tfShift;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {/*...*/}
@@ -118,7 +120,7 @@ public class Polygarmonic extends Line implements Initializable {
             im[i] /= N;
         }
 
-        for (int i = 0; i < N / 2; i++)
+        for (int i = 0; i < N; i++)
         {
             series2.getData().add(new XYChart.Data<>((double) i, Math.sqrt(Math.pow(re[i], 2) + Math.pow(im[i], 2))));
         }
@@ -132,9 +134,10 @@ public class Polygarmonic extends Line implements Initializable {
         XYChart.Series<Double, Double> series2;
         series2 = new XYChart.Series<>();
         double val;
-        for (int i = 0; i < N/2; i++)
+
+        for (int i = 0; i < N; i++)
         {
-            for (int j = 0; j < N/2; j++)
+            for (int j = 0; j < N; j++)
             {
                 re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
                 im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
@@ -143,11 +146,27 @@ public class Polygarmonic extends Line implements Initializable {
             im[i] /= N;
         }
 
-        for (int i = 0; i < N / 2; i++)
+        for (int i = 0; i < N; i++)
         {
-            series2.getData().add(new XYChart.Data<>((double) i, re[i] +im[i]));
+            series2.getData().add(new XYChart.Data<>((double) i, re[i]+im[i]));
         }
-        return series2;
+        XYChart.Series<Double, Double> series3;
+        series3 = new XYChart.Series<>();
+
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                re[i] += series2.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im[i] += series2.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+        }
+
+        for (int i = 0; i < N; i++)
+        {
+            series3.getData().add(new XYChart.Data<>((double) i, re[i] + im[i]));
+        }
+        return series3;
     }
 
     public void newAdd(ActionEvent actionEvent) {
@@ -163,6 +182,27 @@ public class Polygarmonic extends Line implements Initializable {
 
     public void newRFurie(ActionEvent actionEvent) {
         setValue(Integer.parseInt(tfA.getText()), Integer.parseInt(tff.getText()), Double.parseDouble(tft.getText()), Integer.parseInt(tfN.getText()));
-        printLine(chart1, ReversFurie(Furie(getSeries())));
+        //printLine(chart1, ReversFurie(Furie(getSeries())));
+        printLine(chart1, ReversFurie(getSeries()));
+    }
+
+    public void newAC(ActionEvent actionEvent) {
+        setValue(Integer.parseInt(tfA.getText()), Integer.parseInt(tff.getText()), Double.parseDouble(tft.getText()), Integer.parseInt(tfN.getText()));
+        printLine(chart1, AutoCorrelation(getSeries()));
+    }
+
+    public void newAC1(ActionEvent actionEvent) {
+        setValue(Integer.parseInt(tfA.getText()), Integer.parseInt(tff.getText()), Double.parseDouble(tft.getText()), Integer.parseInt(tfN.getText()));
+        printLine(chart1, AutoCov(getSeries()));
+    }
+
+    public void newShift(ActionEvent actionEvent) {
+        setValue(Integer.parseInt(tfA.getText()), Integer.parseInt(tff.getText()), Double.parseDouble(tft.getText()), Integer.parseInt(tfN.getText()));
+        printLine(chart1, shift(getSeries(), Integer.parseInt(tfShift.getText())));
+    }
+
+    public void newAShift(ActionEvent actionEvent) {
+        setValue(Integer.parseInt(tfA.getText()), Integer.parseInt(tff.getText()), Double.parseDouble(tft.getText()), Integer.parseInt(tfN.getText()));
+        printLine(chart1, shift(getSeries(), Integer.parseInt(tfShift.getText())), AntiShift(shift(getSeries(), Integer.parseInt(tfShift.getText()))));
     }
 }

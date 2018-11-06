@@ -71,6 +71,54 @@ public class ReadDat extends Line implements Initializable {
         return series1;
     }
 
+    public XYChart.Series<Float, Float> Furie(XYChart.Series<Float, Float> series1) {
+        float[] re = new float[N];
+        float[] im = new float[N];
+
+        XYChart.Series<Float, Float> series2;
+        series2 = new XYChart.Series<>();
+        float val;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+            re[i] /= N;
+            im[i] /= N;
+        }
+
+        for (int i = 0; i < N; i++)
+        {
+            series2.getData().add(new XYChart.Data<>((float) i, (float)((Math.sqrt(Math.pow(re[i], 2) + Math.pow(im[i], 2))))));
+        }
+        return series2;
+    }
+
+    public XYChart.Series<Float, Float> ReversFurie(XYChart.Series<Float, Float> series1) {
+        float[] re = new float[N];
+        float[] im = new float[N];
+
+        XYChart.Series<Float, Float> series2;
+        series2 = new XYChart.Series<>();
+        float val;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+        }
+
+        for (int i = 0; i < N; i++)
+        {
+            series2.getData().add(new XYChart.Data<>((float) i, (float)re[i] + im[i]));
+        }
+        return series2;
+    }
+
     public void show() throws IOException {
         Stage stageLF = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("ReadDat.fxml"));
@@ -84,5 +132,13 @@ public class ReadDat extends Line implements Initializable {
     public void newBuildIt(ActionEvent actionEvent) throws IOException {
 
         printLineFl(chart1, getSeries());
+    }
+
+    public void newFIt(ActionEvent actionEvent) throws IOException {
+        printLineFl(chart1, Furie(getSeries()));
+    }
+
+    public void newRFIt(ActionEvent actionEvent) throws IOException {
+        printLineFl(chart1, ReversFurie(Furie(getSeries())));
     }
 }

@@ -33,8 +33,9 @@
     <Button onAction="#newAC1" text="Rxx!" GridPane.columnIndex="1" GridPane.rowIndex="8" />
     <Button onAction="#newMC" text="Rxy!" GridPane.columnIndex="1" GridPane.rowIndex="9" />
     <Button onAction="#newFr" text="Furie!" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+    <Button onAction="#newRFr" text="RFurie!" GridPane.columnIndex="1" GridPane.rowIndex="11" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="12">
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="13">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>
@@ -44,9 +45,9 @@
     </LineChart>
 
     <columnConstraints>
-        <ColumnConstraints maxWidth="124.0" minWidth="31.0" prefWidth="115.0" />
-        <ColumnConstraints maxWidth="128.0" minWidth="39.0" prefWidth="80.0" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="463.0" minWidth="405.0" prefWidth="405.0" />
+        <ColumnConstraints />
+        <ColumnConstraints  />
+        <ColumnConstraints hgrow="ALWAYS" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />

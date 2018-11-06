@@ -28,7 +28,15 @@
     <Button onAction="#newFurie" text="Furie" GridPane.columnIndex="1" GridPane.rowIndex="6" />
     <Button onAction="#newRFurie" text="ReversFurie" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.rowSpan="8" GridPane.vgrow="ALWAYS">
+    <Button onAction="#newAC" text="Rxx!" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <Button onAction="#newAC1" text="Rxx!" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+    <Button onAction="#newShift" text="Shift!" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+    <Button onAction="#newAShift" text="AntiShift!" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+    <Label text="Shift = " GridPane.columnIndex="0" GridPane.rowIndex="12" />
+    <TextField fx:id="tfShift" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.rowSpan="15" GridPane.vgrow="ALWAYS">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>

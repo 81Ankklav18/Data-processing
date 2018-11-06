@@ -96,7 +96,7 @@ public class JavaRandom extends Line implements Initializable {
         for (int i = 0; i < N; i++)
         {
             val = Math.sin(System.currentTimeMillis()/2.d)/2.d+0.5d;
-            sleep(100);
+            sleep(10);
             temp[i] = val;
             if(val > max)
             {
@@ -133,9 +133,32 @@ public class JavaRandom extends Line implements Initializable {
             im[i] /= N;
         }
 
-        for (int i = 0; i < N / 2; i++)
+        for (int i = 0; i < N; i++)
         {
             series2.getData().add(new XYChart.Data<>((double) i, Math.sqrt(Math.pow(re[i], 2) + Math.pow(im[i], 2))));
+        }
+        return series2;
+    }
+
+    public XYChart.Series<Double, Double> ReversFurie(XYChart.Series<Double, Double> series1) {
+        double[] re = new double[N];
+        double[] im = new double[N];
+
+        XYChart.Series<Double, Double> series2;
+        series2 = new XYChart.Series<>();
+        double val;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+        }
+
+        for (int i = 0; i < N / 2; i++)
+        {
+            series2.getData().add(new XYChart.Data<>((double) i, re[i] +im[i]));
         }
         return series2;
     }
@@ -212,6 +235,18 @@ public class JavaRandom extends Line implements Initializable {
         if(rbmyrn.isSelected()) {
             setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
             printLine(chart1, Furie(getSeriesMy()));
+        }
+    }
+
+    public void newRFr(ActionEvent actionEvent) throws InterruptedException {
+        if (rbrn.isSelected()) {
+            setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
+            printLine(chart1, ReversFurie(Furie(getSeriesMy())));
+        }
+        if(rbmyrn.isSelected()) {
+            setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
+            printLine(chart1, ReversFurie(Furie(getSeriesMy())));
+
         }
     }
 }

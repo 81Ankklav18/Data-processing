@@ -11,7 +11,11 @@
 
     <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="4">
+    <Button onAction="#newFIt" text="FurieIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+
+    <Button onAction="#newRFIt" text="ReverseFurieIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="7">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>
