@@ -154,8 +154,6 @@ public class Polygarmonic extends Line implements Initializable {
 
         printLine(chart1, addSeries(getSeries()));
         //setValue(Integer.parseInt(tfA.getText()), Integer.parseInt(tff.getText()), Double.parseDouble(tft.getText()), Integer.parseInt(tfN.getText()));
-
-
     }
 
     public void newFurie(ActionEvent actionEvent) {

@@ -79,6 +79,56 @@ public class LinearFunction extends Line implements Initializable {
         stageLF.show();
     }
 
+    public XYChart.Series<Double, Double> Furie(XYChart.Series<Double, Double> series1) {
+        double[] re = new double[N];
+        double[] im = new double[N];
+
+        XYChart.Series<Double, Double> series2;
+        series2 = new XYChart.Series<>();
+        double val;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+            re[i] /= N;
+            im[i] /= N;
+        }
+
+        for (int i = 0; i < N / 2; i++)
+        {
+            series2.getData().add(new XYChart.Data<>((double) i, Math.sqrt(Math.pow(re[i], 2) + Math.pow(im[i], 2))));
+        }
+        return series2;
+    }
+
+    public XYChart.Series<Double, Double> ReversFurie(XYChart.Series<Double, Double> series1) {
+        double[] re = new double[N];
+        double[] im = new double[N];
+
+        XYChart.Series<Double, Double> series2;
+        series2 = new XYChart.Series<>();
+        double val;
+        for (int i = 0; i < N/2; i++)
+        {
+            for (int j = 0; j < N/2; j++)
+            {
+                re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
+                im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
+            }
+            re[i] /= N;
+            im[i] /= N;
+        }
+
+        for (int i = 0; i < N / 2; i++)
+        {
+            series2.getData().add(new XYChart.Data<>((double) i, re[i] +im[i]));
+        }
+        return series2;
+    }
+
     void setValue(double k, double b, int N)
     {
         this.k = k;
@@ -114,5 +164,59 @@ public class LinearFunction extends Line implements Initializable {
         );
 
         printLine(chart1, getSeries(), spike(getSeries(), Integer.parseInt(tfCountOfPoints.getText()), Integer.parseInt(tfSpikeDeep.getText())));
+    }
+
+    public void newFShift(ActionEvent actionEvent) {
+        setValue(Double.parseDouble(tfk.getText()),
+                Double.parseDouble(tfb.getText()),
+                Integer.parseInt(tfN.getText())
+        );
+        printLine(chart1, Furie(shift(getSeries(), Integer.parseInt(tfShift.getText()))));
+    }
+
+    public void newFSpike(ActionEvent actionEvent) {
+        setValue(Double.parseDouble(tfk.getText()),
+                Double.parseDouble(tfb.getText()),
+                Integer.parseInt(tfN.getText())
+        );
+        printLine(chart1, Furie(spike(getSeries(), Integer.parseInt(tfCountOfPoints.getText()), Integer.parseInt(tfSpikeDeep.getText()))));
+    }
+
+    public void newRFSpike(ActionEvent actionEvent) {
+        setValue(Double.parseDouble(tfk.getText()),
+                Double.parseDouble(tfb.getText()),
+                Integer.parseInt(tfN.getText())
+        );
+        printLine(chart1, ReversFurie(Furie(spike(getSeries(), Integer.parseInt(tfCountOfPoints.getText()), Integer.parseInt(tfSpikeDeep.getText())))));
+    }
+
+    public void newRFShift(ActionEvent actionEvent) {
+        setValue(Double.parseDouble(tfk.getText()),
+                Double.parseDouble(tfb.getText()),
+                Integer.parseInt(tfN.getText())
+        );
+        printLine(chart1, ReversFurie((shift(getSeries(), Integer.parseInt(tfShift.getText())))));
+    }
+
+    public void newASpike(ActionEvent actionEvent) {
+        setValue(Double.parseDouble(tfk.getText()),
+                Double.parseDouble(tfb.getText()),
+                Integer.parseInt(tfN.getText())
+        );
+
+        printLine(chart1, getSeries(),
+                spike(getSeries(), Integer.parseInt(tfCountOfPoints.getText()), Integer.parseInt(tfSpikeDeep.getText())),
+                AntiSpike(spike(getSeries(), Integer.parseInt(tfCountOfPoints.getText()), Integer.parseInt(tfSpikeDeep.getText())),
+                        Double.parseDouble(tfk.getText()),
+                        Double.parseDouble(tfb.getText())));
+    }
+
+    public void newAShift(ActionEvent actionEvent) {
+        setValue(Double.parseDouble(tfk.getText()),
+                Double.parseDouble(tfb.getText()),
+                Integer.parseInt(tfN.getText())
+        );
+
+        printLine(chart1, getSeries(), AntiShift(shift(getSeries(), Integer.parseInt(tfShift.getText()))));
     }
 }

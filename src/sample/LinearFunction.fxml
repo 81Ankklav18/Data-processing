@@ -29,10 +29,19 @@
     <TextField fx:id="tfSpikeDeep" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
     <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-    <Button onAction="#newShift" text="ShiftIt!" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-    <Button onAction="#newSpike" text="SpikeIt!" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <Button onAction="#newShift" text="ShiftIt!" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+    <Button onAction="#newSpike" text="SpikeIt!" GridPane.columnIndex="0" GridPane.rowIndex="8" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="8">
+    <Button onAction="#newFSpike" text="FurieSpikeIt!" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <Button onAction="#newFShift" text="FurieShiftIt!" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+
+    <Button onAction="#newRFSpike" text="RFurieSpikeIt!" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <Button onAction="#newASpike" text="AntiSpikeIt!" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+    <Button onAction="#newAShift" text="AntiShiftIt!" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+    <Button onAction="#newRFShift" text="RFurieShiftIt!" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+    <Button onAction="#newRFSpike" text="RFurieSpikeIt!" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="15">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>
@@ -42,9 +51,9 @@
     </LineChart>
 
     <columnConstraints>
-        <ColumnConstraints maxWidth="69.0" minWidth="16.0" prefWidth="63.0" />
-        <ColumnConstraints maxWidth="123.0" minWidth="48.0" prefWidth="56.0" />
-        <ColumnConstraints hgrow="ALWAYS"  />
+        <ColumnConstraints maxWidth="150.0" minWidth="16.0" prefWidth="144.0" />
+        <ColumnConstraints maxWidth="153.0" minWidth="48.0" prefWidth="110.0" />
+        <ColumnConstraints hgrow="ALWAYS"/>
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />
@@ -54,6 +63,9 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
       <RowConstraints />
     </rowConstraints>
 </GridPane>

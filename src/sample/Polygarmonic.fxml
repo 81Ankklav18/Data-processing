@@ -38,9 +38,9 @@
     </LineChart>
 
     <columnConstraints>
-        <ColumnConstraints maxWidth="69.0" minWidth="16.0" prefWidth="63.0" />
-        <ColumnConstraints maxWidth="123.0" minWidth="48.0" prefWidth="56.0" />
-        <ColumnConstraints hgrow="ALWAYS"  />
+        <ColumnConstraints maxWidth="84.0" minWidth="16.0" prefWidth="75.0" />
+        <ColumnConstraints maxWidth="123.0" minWidth="48.0" prefWidth="97.0" />
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="490.0" minWidth="428.0" prefWidth="428.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />
@@ -50,6 +50,7 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
 
 </GridPane>

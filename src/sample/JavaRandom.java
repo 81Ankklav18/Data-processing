@@ -96,7 +96,7 @@ public class JavaRandom extends Line implements Initializable {
         for (int i = 0; i < N; i++)
         {
             val = Math.sin(System.currentTimeMillis()/2.d)/2.d+0.5d;
-            sleep(10);
+            sleep(100);
             temp[i] = val;
             if(val > max)
             {
@@ -198,13 +198,20 @@ public class JavaRandom extends Line implements Initializable {
     }
 
     public void newMC(ActionEvent actionEvent) throws InterruptedException {
-        setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
-
-        printLine(chart1, MutualCorrelation(getSeries(), getSeriesMy()));
+        if (rbrn.isSelected()) {
+            setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
+            printLine(chart1, MutualCorrelation(getSeries(), getSeriesMy()));
+        }
     }
 
-    public void newFr(ActionEvent actionEvent) {
-        setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
-        printLine(chart1, Furie(getSeries()));
+    public void newFr(ActionEvent actionEvent) throws InterruptedException {
+        if (rbrn.isSelected()) {
+            setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
+            printLine(chart1, Furie(getSeries()));
+        }
+        if(rbmyrn.isSelected()) {
+            setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
+            printLine(chart1, Furie(getSeriesMy()));
+        }
     }
 }
