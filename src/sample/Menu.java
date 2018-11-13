@@ -53,4 +53,9 @@ public class Menu implements Initializable {
         Polygarmonic pg = new Polygarmonic();
         pg.show();
     }
+
+    public void newCWindow(ActionEvent actionEvent) throws IOException {
+        Cardio c = new Cardio();
+        c.show();
+    }
 }

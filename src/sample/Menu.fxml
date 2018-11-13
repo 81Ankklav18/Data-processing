@@ -19,6 +19,8 @@
 
     <Button text="Построить полигармоническую функцию" fx:id="PolygarmonicButton" onAction="#newPGWindow" GridPane.rowIndex="3"/>
 
+    <Button text="Построить кардиограмму" fx:id="CardioButton" onAction="#newCWindow" GridPane.rowIndex="4"/>
+
     <rowConstraints>
         <RowConstraints/>
         <RowConstraints/>
