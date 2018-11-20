@@ -21,6 +21,8 @@
 
     <Button text="Построить кардиограмму" fx:id="CardioButton" onAction="#newCWindow" GridPane.rowIndex="4"/>
 
+    <Button text="Фильтр" fx:id="FiltrButton" onAction="#newFlindow" GridPane.rowIndex="5"/>
+
     <rowConstraints>
         <RowConstraints/>
         <RowConstraints/>

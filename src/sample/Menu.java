@@ -58,4 +58,9 @@ public class Menu implements Initializable {
         Cardio c = new Cardio();
         c.show();
     }
+
+    public void newFlindow(ActionEvent actionEvent) throws IOException {
+        Filtr f = new Filtr();
+        f.show();
+    }
 }
