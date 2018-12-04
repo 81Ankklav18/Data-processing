@@ -31,8 +31,7 @@ public class Cardio extends Line implements Initializable {
     private int M;
     private XYChart.Series<Double, Double> series1;
 
-    public Cardio()
-    {
+    public Cardio() {
         super(1000);
         M = 200;
     }
@@ -45,46 +44,73 @@ public class Cardio extends Line implements Initializable {
 
     private XYChart.Series<Double, Double> getSeries() throws IOException {
         /*TODO: create var's instead of const's*/
-        double f = 7, a = 25, dt = 0.005d;
+        double f = 7, a = 7, dt = 0.002d;
         series1 = new XYChart.Series<>();
-        for (int k = 0; k < N / M; k++) {
-            for (int i = 0; i < M; i++) {
-                series1.getData().add(new XYChart.Data<>((double) i+(k*M), Math.sin(2 * Math.PI * f * dt * i) * Math.exp(-a * dt * i)));
-            }
+
+        for (int i = 0; i < M; i++) {
+            series1.getData().add(new XYChart.Data<>((double) i, Math.sin(2 * Math.PI * f * dt * i) * Math.exp(-a * dt * i)));
         }
+
         return series1;
     }
 
-    XYChart.Series<Double, Double> Convalutuion(XYChart.Series<Double, Double> series1){
+    XYChart.Series<Double, Double> Peek(XYChart.Series<Double, Double> series1) {
         XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
         /*TODO: create var's instead of const's*/
         double f = 7, a = 25, dt = 0.005d;
         double resault = 0;
 
-        for (int i = 0; i < M+N-1; i++){
-            for (int j = 0; j < M-1; j++){
-                if (i-j > 0 || j < 1000){
-                    resault += Math.sin(2*Math.PI*f*dt*i-j)*Math.exp(-a*dt*j);
+            for (int i = 0; i < M; i++) {
+                for (int j = 0; j < M - 1; j++) {
+                    if (i - j > 0 || j < 1000) {
+                        resault += Math.sin(2 * Math.PI * f * dt * i) * Math.exp(-a * dt * i);
+                    }
                 }
+                series2.getData().add(new XYChart.Data<>((double) i, resault));
+                resault = 0;
             }
-            series2.getData().add(new XYChart.Data<>((double) i, resault));
-            resault = 0;
+            return series2;
         }
 
-        return series2;
+    XYChart.Series<Double, Double> Convalution(XYChart.Series<Double, Double> peek, XYChart.Series<Double, Double> h) {
+        XYChart.Series<Double, Double> series3 = new XYChart.Series<Double, Double>();
+        /*TODO: create var's instead of const's*/
+        double f = 7, a = 25, dt = 0.005d;
+        double resault = 0;
+        int N = peek.getData().size();
+        int M = h.getData().size();
+
+        for (int i = 0; i < N+M-1; i++) {
+            for (int j = 0; j < M ; j++) {
+                if (i - j > 0 && i-j < N) {
+                    resault += peek.getData().get(i-j).getYValue() * h.getData().get(j).getYValue();
+                }
+            }
+            series3.getData().add(new XYChart.Data<>((double) i, resault));
+            resault = 0;
+        }
+        return series3;
     }
 
-    public void show() throws IOException {
-        Stage stageLF = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Cardio.fxml"));
-        stageLF.setTitle("Cardio Graphics");
+        public void show() throws IOException {
+            Stage stageLF = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("Cardio.fxml"));
+            stageLF.setTitle("Cardio Graphics");
 
-        stageLF.setScene(new Scene(root, 600, 600));
+            stageLF.setScene(new Scene(root, 600, 600));
 
-        stageLF.show();
-    }
+            stageLF.show();
+        }
 
-    public void newBuildIt(ActionEvent actionEvent) throws IOException {
-        printLine(chart1, getSeries(), Convalutuion((getSeries())));
+        public void newBuildIt (ActionEvent actionEvent) throws IOException {
+            printLine(chart1, getSeries());
+        }
+
+        public void newConvaluation (ActionEvent actionEvent) throws IOException {
+            printLine(chart1, Convalution(Peek(getSeries()), getSeries()));
+        }
+
+    public void newPeekIt(ActionEvent actionEvent) throws IOException {
+        printLine(chart1, Peek(getSeries()));
     }
 }

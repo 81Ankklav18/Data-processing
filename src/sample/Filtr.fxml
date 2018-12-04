@@ -13,11 +13,31 @@
           fx:controller="sample.Filtr"
           prefHeight="400.0" prefWidth="600.0">
 
-    <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+    <Button onAction="#newLPF" text="LPF!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
 
-    <Button onAction="#newFIt" text="FurieIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+    <Button onAction="#newLPFFIt" text="LPfFurieIt!" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
 
-    <Button onAction="#newRFIt" text="ReverseFurieIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+    <Button onAction="#newHPF" text="HPF!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+
+    <Button onAction="#newHPFFIt" text="HPFFurieIt!" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+
+    <Button onAction="#newBPF" text="BPF!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+
+    <Button onAction="#newBPFFIt" text="BPFFurieIt!" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+
+    <Button onAction="#newBSF" text="BSF!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+
+    <Button onAction="#newBSFFIt" text="BSFFurieIt!" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+
+    <Button onAction="#newPoly" text="Poly!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+
+    <Button onAction="#newLPFPoly" text="BSF!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="10" />
+
+    <Button onAction="#newHPFPoly" text="BSF!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+
+    <Button onAction="#newBPFPoly" text="BSF!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+
+    <Button onAction="#newBSFPoly" text="BSF!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="13" />
 
     <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="7">
         <xAxis>

@@ -59,8 +59,18 @@ public class Menu implements Initializable {
         c.show();
     }
 
-    public void newFlindow(ActionEvent actionEvent) throws IOException {
+    public void newFlWindow(ActionEvent actionEvent) throws IOException {
         Filtr f = new Filtr();
         f.show();
+    }
+
+    public void newWavWindow(ActionEvent actionEvent) throws IOException {
+        ReadWav w = new ReadWav();
+        w.show();
+    }
+
+    public void newAntiTrend(ActionEvent actionEvent) throws IOException {
+        AntiTrend a = new AntiTrend();
+        a.show();
     }
 }

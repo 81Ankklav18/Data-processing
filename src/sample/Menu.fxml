@@ -21,9 +21,14 @@
 
     <Button text="Построить кардиограмму" fx:id="CardioButton" onAction="#newCWindow" GridPane.rowIndex="4"/>
 
-    <Button text="Фильтр" fx:id="FiltrButton" onAction="#newFlindow" GridPane.rowIndex="5"/>
+    <Button text="Фильтр" fx:id="FiltrButton" onAction="#newFlWindow" GridPane.rowIndex="5"/>
+
+    <Button text="Wav" fx:id="WavButton" onAction="#newWavWindow" GridPane.rowIndex="6"/>
+
+    <Button text="AntiTrend" fx:id="AntiTrendButton" onAction="#newAntiTrend" GridPane.rowIndex="7"/>
 
     <rowConstraints>
+        <RowConstraints/>
         <RowConstraints/>
         <RowConstraints/>
         <RowConstraints/>

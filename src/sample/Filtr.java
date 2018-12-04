@@ -27,8 +27,7 @@ public class Filtr extends Line implements Initializable {
 
     private XYChart.Series<Double, Double> series1;
 
-    public Filtr()
-    {
+    public Filtr() {
         super(1000);
     }
 
@@ -48,10 +47,8 @@ public class Filtr extends Line implements Initializable {
         XYChart.Series<Double, Double> series2;
         series2 = new XYChart.Series<>();
         float val;
-        for (int i = 0; i < N; i++)
-        {
-            for (int j = 0; j < N; j++)
-            {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
                 im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
             }
@@ -59,9 +56,8 @@ public class Filtr extends Line implements Initializable {
             im[i] /= N;
         }
 
-        for (int i = 0; i < m; i++)
-        {
-            series2.getData().add(new XYChart.Data<>((double) i, N * (double)((Math.sqrt(Math.pow(re[i], 2) + Math.pow(im[i], 2))))));
+        for (int i = 0; i < m; i++) {
+            series2.getData().add(new XYChart.Data<>((double) i, N * (double) ((Math.sqrt(Math.pow(re[i], 2) + Math.pow(im[i], 2))))));
         }
         return series2;
     }
@@ -74,10 +70,8 @@ public class Filtr extends Line implements Initializable {
         series2 = new XYChart.Series<>();
         double val;
 
-        for (int i = 0; i < N; i++)
-        {
-            for (int j = 0; j < N; j++)
-            {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 re[i] += series1.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
                 im[i] += series1.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
             }
@@ -85,27 +79,23 @@ public class Filtr extends Line implements Initializable {
             im[i] /= N;
         }
 
-        for (int i = 0; i < N; i++)
-        {
-            series2.getData().add(new XYChart.Data<>((double) i, re[i]+im[i]));
+        for (int i = 0; i < N; i++) {
+            series2.getData().add(new XYChart.Data<>((double) i, re[i] + im[i]));
         }
         XYChart.Series<Double, Double> series3;
         series3 = new XYChart.Series<>();
         double[] re1 = new double[N];
         double[] im1 = new double[N];
 
-        for (int i = 0; i < N; i++)
-        {
-            for (int j = 0; j < N; j++)
-            {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 re1[i] += series2.getData().get(j).getYValue() * Math.cos((2 * Math.PI * i * j) / N);
                 im1[i] += series2.getData().get(j).getYValue() * Math.sin((2 * Math.PI * i * j) / N);
             }
         }
 
-        for (int i = 0; i < N; i++)
-        {
-            series3.getData().add(new XYChart.Data<>((double) i, (double)re1[i] + im1[i]));
+        for (int i = 0; i < N; i++) {
+            series3.getData().add(new XYChart.Data<>((double) i, (double) re1[i] + im1[i]));
         }
         return series3;
     }
@@ -120,17 +110,17 @@ public class Filtr extends Line implements Initializable {
         stageLF.show();
     }
 
-    public XYChart.Series<Double, Double> getSeries(int fcut, double dt, int m){
+    public XYChart.Series<Double, Double> getSeries(int fcut, double dt, int m) {
         series1 = new XYChart.Series<>();
         double d[] = {0.35_57_70_19d, 0.24_36_98_30d, 0.07_21_14_97d, 0.00_63_01_65d};
-        double lpw[] = new double[2*m+1];
+        double lpw[] = new double[2 * m + 1];
 
         //прямоугольная
         double arg = 2 * fcut * dt;
         lpw[0] = arg;
         arg *= Math.PI;
 
-        for (int i = 1; i <= m; i++){
+        for (int i = 1; i <= m; i++) {
             lpw[i] = (Math.sin(arg * i)) / (Math.PI * i);
         }
 
@@ -140,58 +130,167 @@ public class Filtr extends Line implements Initializable {
         //окно Поттера p310
         double sumg = lpw[0];
         double sum;
-        for (int i = 1; i <= m; i++){
+        for (int i = 1; i <= m; i++) {
             sum = d[0];
             arg = (Math.PI * i) / m;
-            for (int k = 1; k <= 3; k++){
+            for (int k = 1; k <= 3; k++) {
                 sum += 2 * d[k] * Math.cos(arg * k);
             }
             lpw[i] *= sum;
             sumg += 2 * lpw[i];
         }
 
-        for (int i = 0; i <= m; i++){
+        for (int i = 0; i <= m; i++) {
             lpw[i] /= sumg;
         }
 
-        for (int i = -m; i <= m ; i++) {
+        for (int i = -m; i <= m; i++) {
             series1.getData().add(new XYChart.Data<>((double) i, lpw[Math.abs(i)]));
         }
 
         return series1;
     }
 
-    XYChart.Series<Double, Double> Convalutuion(XYChart.Series<Double, Double> series1, int m){
+    public XYChart.Series<Double, Double> HPF(XYChart.Series<Double, Double> series3, int fcut, double dt, int m) {
         XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
-        /*TODO: create var's instead of const's*/
-        double f = 15, a = 25, dt = 0.002d;
         double resault = 0;
         N = m;
-        int M = 32;
 
-        for (int i = 0; i < M+N-1; i++){
-            for (int j = 0; j < M-1; j++){
-                if (i-j > 0 || j < m){
-                    resault += Math.sin(2*Math.PI*f*dt*i-j)*Math.exp(-a*dt*j);
-                }
+        for (int i = 0; i <= 2*m; i++) {
+            if (i == m) {
+                series2.getData().add(new XYChart.Data<>((double) i, 1 - series3.getData().get(i).getYValue()));
             }
-            series2.getData().add(new XYChart.Data<>((double) i, resault));
-            resault = 0;
+            else
+            {
+                series2.getData().add(new XYChart.Data<>((double) i, - series3.getData().get(i).getYValue()));
+            }
         }
 
         return series2;
     }
-//TODO: create var's instead of const's and correct Convaluation
-    public void newBuildIt(ActionEvent actionEvent) throws IOException {
 
+    public XYChart.Series<Double, Double> BPF(XYChart.Series<Double, Double> series3,
+                                              XYChart.Series<Double, Double> series4,
+                                              int fcut, double dt, int m) {
+        XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
+
+        double resault = 0;
+        N = m;
+
+        for (int i = 0; i <= 2*m; i++) {
+
+                series2.getData().add(new XYChart.Data<>((double) i,
+                        series4.getData().get(i).getYValue() - series3.getData().get(i).getYValue()));
+        }
+
+        return series2;
+    }
+
+    public XYChart.Series<Double, Double> BSF(XYChart.Series<Double, Double> series3,
+                                              XYChart.Series<Double, Double> series4,
+                                              int fcut, double dt, int m) {
+        XYChart.Series<Double, Double> series2 = new XYChart.Series<Double, Double>();
+
+        double resault = 0;
+        N = m;
+
+        for (int i = 0; i <= 2*m; i++) {
+if ( i == m){
+            series2.getData().add(new XYChart.Data<>((double) i,
+                    1 + series3.getData().get(i).getYValue() - series4.getData().get(i).getYValue()));}
+                    else
+{
+    series2.getData().add(new XYChart.Data<>((double) i,
+            series3.getData().get(i).getYValue() - series4.getData().get(i).getYValue()));
+}
+        }
+
+        return series2;
+    }
+
+    public XYChart.Series<Double, Double> createPoly(){
+        XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
+
+        for (int i = 0; i < 500; i++) {
+            series1.getData().add(new XYChart.Data<>((double) i,
+                    (10 * Math.sin(2 * Math.PI * 15 * i * 0.002d)) +
+                            (47 * Math.sin(47 * Math.PI * 15 * i * 0.002d) +
+                            (150 * Math.sin(150 * Math.PI * 15 * i * 0.002d)))));
+        }
+        return series1;
+    }
+
+    XYChart.Series<Double, Double> Convalution(XYChart.Series<Double, Double> peek, XYChart.Series<Double, Double> h) {
+        XYChart.Series<Double, Double> series3 = new XYChart.Series<Double, Double>();
+        /*TODO: create var's instead of const's*/
+        double f = 7, a = 25, dt = 0.005d;
+        double resault = 0;
+        int N = peek.getData().size();
+        int M = h.getData().size();
+
+        for (int i = 0; i < N+M-1; i++) {
+            for (int j = 0; j < M ; j++) {
+                if (i - j > 0 && i-j < N) {
+                    resault += peek.getData().get(i-j).getYValue() * h.getData().get(j).getYValue();
+                }
+            }
+            series3.getData().add(new XYChart.Data<>((double) i, resault));
+            resault = 0;
+        }
+        return series3;
+    }
+
+    //TODO: create var's instead of const's and correct Convaluation
+    public void newLPF(ActionEvent actionEvent) throws IOException {
         printLine(chart1, getSeries(15, 0.002d, 128));
     }
 
-    public void newFIt(ActionEvent actionEvent) throws IOException {
+    public void newLPFFIt(ActionEvent actionEvent) throws IOException {
         printLine(chart1, Furie(getSeries(15, 0.002d, 128), 128));
     }
 
-    public void newRFIt(ActionEvent actionEvent) throws IOException {
-        printLine(chart1, Convalutuion(getSeries(15, 0.002d, 128), 128));
+    public void newHPF(ActionEvent actionEvent) {
+        printLine(chart1, HPF(getSeries(15, 0.002d, 128),15, 0.002d, 128));
+    }
+
+    public void newBPF(ActionEvent actionEvent) {
+        printLine(chart1, BPF(getSeries(15, 0.002d, 128), getSeries(30, 0.002d, 128),15, 0.002d, 128));
+    }
+
+    public void newBSF(ActionEvent actionEvent) {
+        printLine(chart1, BSF(getSeries(15, 0.002d, 128), getSeries(30, 0.002d, 128),15, 0.002d, 128));
+    }
+
+
+    public void newPoly(ActionEvent actionEvent) {
+        printLine(chart1, createPoly());
+    }
+
+    public void newLPFPoly(ActionEvent actionEvent) {
+        printLine(chart1, Convalution(getSeries(15, 0.002d, 128), createPoly()));
+    }
+
+    public void newHPFPoly(ActionEvent actionEvent) {
+        printLine(chart1, Convalution(HPF(getSeries(15, 0.002d, 128),15, 0.002d, 128), createPoly()));
+    }
+
+    public void newBPFPoly(ActionEvent actionEvent) {
+        printLine(chart1, Convalution(BPF(getSeries(15, 0.002d, 128), getSeries(30, 0.002d, 128),15, 0.002d, 128), createPoly()));
+    }
+
+    public void newBSFPoly(ActionEvent actionEvent) {
+        printLine(chart1, Convalution(BSF(getSeries(15, 0.002d, 128), getSeries(30, 0.002d, 128),15, 0.002d, 128), createPoly()));
+    }
+
+    public void newHPFFIt(ActionEvent actionEvent) {
+        printLine(chart1, Furie(HPF(getSeries(15, 0.002d, 128),15, 0.002d, 128), 128));
+    }
+
+    public void newBPFFIt(ActionEvent actionEvent) {
+        printLine(chart1, Furie(BPF(getSeries(15, 0.002d, 128), getSeries(30, 0.002d, 128),15, 0.002d, 128), 128));
+    }
+
+    public void newBSFFIt(ActionEvent actionEvent) {
+        printLine(chart1, Furie(BSF(getSeries(15, 0.002d, 128), getSeries(30, 0.002d, 128),15, 0.002d, 128), 128));
     }
 }
