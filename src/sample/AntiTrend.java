@@ -12,15 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.net.URL;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.nio.channels.FileChannel;
 import java.util.Random;
 import java.util.ResourceBundle;
-
-import static com.sun.deploy.config.Config.getCacheDirectory;
 
 public class AntiTrend extends Line implements Initializable {
     private int x;
@@ -28,8 +22,7 @@ public class AntiTrend extends Line implements Initializable {
 
     private XYChart.Series<Double, Double> series1;
 
-    public AntiTrend()
-    {
+    public AntiTrend() {
         super(1000);
     }
 
@@ -49,23 +42,19 @@ public class AntiTrend extends Line implements Initializable {
 
         series1 = new XYChart.Series<>();
         double val;
-        for (int i = 0; i < N; i++)
-        {
-            val = rand.nextInt(100)+1;
+        for (int i = 0; i < N; i++) {
+            val = rand.nextInt(100) + 1;
             temp[i] = val;
-            if(val > max)
-            {
+            if (val > max) {
                 max = val;
             }
-            if (val < min)
-            {
+            if (val < min) {
                 min = val;
             }
         }
 
-        for (int i = 0; i < N; i++)
-        {
-            series1.getData().add(new XYChart.Data<>((double) i, temp[i]- 0.5d + 3*i+2));
+        for (int i = 0; i < N; i++) {
+            series1.getData().add(new XYChart.Data<>((double) i, temp[i] - 0.5d + 3 * i + 2));
         }
 
         return series1;
@@ -76,7 +65,7 @@ public class AntiTrend extends Line implements Initializable {
         XYChart.Series<Double, Double> series2;
         series2 = new XYChart.Series<>();
 
-        for (int i = 0; i < N; i++){
+        for (int i = 0; i < N; i++) {
             if (i > 6) {
                 for (int j = i - 6; j < i + 6 && j < N - 13; j++) {
                     mid += series1.getData().get(j).getYValue();
@@ -89,20 +78,17 @@ public class AntiTrend extends Line implements Initializable {
             }
         }
 
-        for (int i = 0; i < 6; i++)
-        {
+        for (int i = 0; i < 6; i++) {
             series2.getData().add(i, new XYChart.Data<>((double) i, series1.getData().get(i).getYValue()));
         }
 
-        for (int i = 975; i < 1000; i++)
-        {
+        for (int i = 975; i < 1000; i++) {
             series2.getData().add(new XYChart.Data<>((double) i, series1.getData().get(i).getYValue()));
         }
 
-        int a = 0 ;
+        int a = 0;
         return series2;
     }
-
 
 
     public void show() throws IOException {

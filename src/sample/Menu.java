@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -72,5 +73,10 @@ public class Menu implements Initializable {
     public void newAntiTrend(ActionEvent actionEvent) throws IOException {
         AntiTrend a = new AntiTrend();
         a.show();
+    }
+
+    public void newReadCSV(ActionEvent actionEvent) throws IOException {
+        ReadCSV rcsv = new ReadCSV();
+        rcsv.show();
     }
 }

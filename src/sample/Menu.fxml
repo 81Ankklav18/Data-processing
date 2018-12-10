@@ -27,6 +27,8 @@
 
     <Button text="AntiTrend" fx:id="AntiTrendButton" onAction="#newAntiTrend" GridPane.rowIndex="7"/>
 
+    <Button text="ReadCSV" fx:id="ReadCSV" onAction="#newReadCSV" GridPane.rowIndex="8"/>
+
     <rowConstraints>
         <RowConstraints/>
         <RowConstraints/>

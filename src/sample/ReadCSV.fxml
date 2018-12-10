@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.*?>
 <GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="sample.Cardio"
-          prefHeight="400.0" prefWidth="600.0">
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.ReadCSV"
+            prefHeight="400.0" prefWidth="600.0">
 
-    <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-
-    <Button onAction="#newPeekIt" text="PeekIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-
-    <Button onAction="#newConvaluation" text="Convaluation!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-
+    <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
     <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="7">
         <xAxis>

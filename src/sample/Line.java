@@ -44,6 +44,16 @@ public class Line {
         ch.getData().addAll(ser, ser2, ser3);
     }
 
+    //перегрузка; метод отрисовки 4х графиков
+    public void printLine(LineChart<Double, Double> ch, XYChart.Series<Double, Double> ser,
+                          XYChart.Series<Double, Double> ser2,
+                          XYChart.Series<Double, Double> ser3,
+                          XYChart.Series<Double, Double> ser4) {
+        ch.getData().clear();
+        ch.setCreateSymbols(false);
+        ch.getData().addAll(ser, ser2, ser3, ser4);
+    }
+
     public static XYChart.Series<Double, Double> operationSum(XYChart.Series<Double, Double> series1,
                                                               XYChart.Series<Double, Double> series2) {
         for (int i = 0; i < series1.getData().size(); i++) {
@@ -58,6 +68,16 @@ public class Line {
         XYChart.Series<Double, Double> series2 = new XYChart.Series<>();
 
         for (int i = 0; i < N; i++) {
+            series2.getData().add(new XYChart.Data<>(Double.valueOf(i), series1.getData().get(i).getYValue() + shift));
+        }
+
+        return series2;
+    }
+
+    public XYChart.Series<Double, Double> shift(XYChart.Series<Double, Double> series1, int shift, int size) {
+        XYChart.Series<Double, Double> series2 = new XYChart.Series<>();
+
+        for (int i = 0; i < size; i++) {
             series2.getData().add(new XYChart.Data<>(Double.valueOf(i), series1.getData().get(i).getYValue() + shift));
         }
 
