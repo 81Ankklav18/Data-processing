@@ -36,7 +36,7 @@
     <Label text="Shift = " GridPane.columnIndex="0" GridPane.rowIndex="12" />
     <TextField fx:id="tfShift" GridPane.columnIndex="1" GridPane.rowIndex="12" />
 
-    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.rowSpan="15" GridPane.vgrow="ALWAYS">
+    <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="15">
         <xAxis>
             <NumberAxis side="BOTTOM" />
         </xAxis>
@@ -48,7 +48,7 @@
     <columnConstraints>
         <ColumnConstraints maxWidth="84.0" minWidth="16.0" prefWidth="75.0" />
         <ColumnConstraints maxWidth="123.0" minWidth="48.0" prefWidth="97.0" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="490.0" minWidth="428.0" prefWidth="428.0" />
+        <ColumnConstraints hgrow="ALWAYS" minWidth="428.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />
@@ -58,6 +58,13 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
       <RowConstraints />
     </rowConstraints>
 

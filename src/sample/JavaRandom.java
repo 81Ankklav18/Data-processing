@@ -244,7 +244,7 @@ public class JavaRandom extends Line implements Initializable {
     public void newMC(ActionEvent actionEvent) throws InterruptedException {
         if (rbrn.isSelected()) {
             setValue(Integer.parseInt(tflv.getText()), Integer.parseInt(tfhv.getText()), Integer.parseInt(tfN.getText()));
-            printLine(chart1, MutualCorrelation(getSeries(), getSeriesMy()));
+            printLine(chart1, CrossCorrelation(getSeries(), getSeriesMy()));
         }
     }
 

@@ -71,7 +71,7 @@ public class ReadDat extends Line implements Initializable {
         return series1;
     }
 
-    public XYChart.Series<Float, Float> Furie(XYChart.Series<Float, Float> series1) {
+    /*public XYChart.Series<Float, Float> Furie(XYChart.Series<Float, Float> series1) {
         float[] re = new float[N];
         float[] im = new float[N];
 
@@ -94,9 +94,9 @@ public class ReadDat extends Line implements Initializable {
             series2.getData().add(new XYChart.Data<>((float) i, (float)((Math.sqrt(Math.pow(re[i], 2) + Math.pow(im[i], 2))))));
         }
         return series2;
-    }
+    }*/
 
-    public XYChart.Series<Float, Float> ReversFurie(XYChart.Series<Float, Float> series1) {
+    /*public XYChart.Series<Float, Float> ReversFurie(XYChart.Series<Float, Float> series1) {
         float[] re = new float[N];
         float[] im = new float[N];
 
@@ -138,7 +138,7 @@ public class ReadDat extends Line implements Initializable {
             series3.getData().add(new XYChart.Data<>((float) i, (float)re1[i] + im1[i]));
         }
         return series3;
-    }
+    }*/
 
     public void show() throws IOException {
         Stage stageLF = new Stage();
@@ -156,10 +156,10 @@ public class ReadDat extends Line implements Initializable {
     }
 
     public void newFIt(ActionEvent actionEvent) throws IOException {
-        printLineFl(chart1, Furie(getSeries()));
+        printLineFl(chart1, FurieFl(getSeries()));
     }
 
     public void newRFIt(ActionEvent actionEvent) throws IOException {
-        printLineFl(chart1, ReversFurie(getSeries()));
+        printLineFl(chart1, ReversFurieFl(getSeries()));
     }
 }
