@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import sample.Line;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class ReadCSV extends Line implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {/*...*/}
 
-    private XYChart.Series<Double, Double> getSeries(String csvpath) throws IOException {
+    public XYChart.Series<Double, Double> getSeries(String csvpath) throws IOException {
         series1 = new XYChart.Series<>();
 
         Scanner scanner = new Scanner(new File(csvpath));
@@ -81,6 +82,19 @@ public class ReadCSV extends Line implements Initializable {
 //        }
         series1.setName(csvpath);
         return series1;
+    }
+
+    ArrayList<String> getData(String csvpath) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(csvpath));
+        scanner.useDelimiter("(;)|(\\r\\n)");
+        ArrayList<String> data = new ArrayList<String>();
+        while (scanner.hasNext()) {
+            data.add(scanner.next());
+            //System.out.print(scanner.next()+"|");
+        }
+        scanner.close();
+
+        return data;
     }
 
 /*    private void getDifference(String csvpath) throws IOException {
@@ -127,12 +141,19 @@ public class ReadCSV extends Line implements Initializable {
         return size;
     }
 
+    public XYChart.Series<Double, Double> printFurieCSV(String csvpath) throws IOException {
+        this.N = size(getSeries(csvpath));
+        return Furie(getSeries(csvpath));
+    }
+
     public void show() throws IOException {
         Stage stageLF = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("sample/Kursovaya/ReadCSV.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ReadCSV.fxml"));
         stageLF.setTitle("Simple Graphics");
 
         stageLF.setScene(new Scene(root, 1000, 600));
+
+
 
         stageLF.show();
     }
@@ -169,7 +190,14 @@ public class ReadCSV extends Line implements Initializable {
 
     public void newFurieIt(ActionEvent actionEvent) throws IOException {
         this.N = size(getSeries("src/apple5.csv"));
-        printLine(chart1
-                , Furie(getSeries("src/netflix5.csv")));
+        printLine(chart1, Furie(getSeries("src/google5.csv")));
+        printLine(chart2, Furie(getSeries("src/apple5.csv")));
+        printLine(chart3, Furie(getSeries("src/microsoft5.csv")));
+        printLine(chart4, Furie(getSeries("src/netflix5.csv")));
+    }
+
+    public void newGoogleAnalysis(ActionEvent actionEvent) throws IOException {
+        Google google = new Google();
+        google.show();
     }
 }

@@ -4,6 +4,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 
+import java.math.RoundingMode;
 import java.util.Random;
 
 public class Line {
@@ -192,6 +193,31 @@ public class Line {
         return Convalution(series2, series3);
     }
 
+    public XYChart.Series<Double, Double> SelfCorrelation(XYChart.Series<Double, Double> series1, XYChart.Series<Double, Double> series2) {
+        XYChart.Series<Double, Double> series3 = new XYChart.Series<>();
+        double avgs1 = 0.d;
+        double avgs2 = 0.d;
+
+        for (int i = 0; i > series1.getData().size(); i++){
+            avgs1 += series1.getData().get(i).getYValue();
+            avgs2 += series2.getData().get(i).getYValue();
+        }
+        avgs1 /= series1.getData().size();
+        avgs2 /= series2.getData().size();
+
+        double corell = 0.d;
+        for (int i = 0; i < series1.getData().size() - 1; i++){
+            corell = 0.d;
+            for (int j = 0; j < series1.getData().size() - 1 - i; j++){
+                corell += (series1.getData().get(j).getYValue() - avgs1) * (series2.getData().get(j+i).getYValue() - avgs2);
+            }
+            corell /= series1.getData().size();
+            series3.getData().add(new XYChart.Data<>((double)i, corell));
+        }
+
+        return series3;
+    }
+
     public XYChart.Series<Double, Double> AntiShift(XYChart.Series<Double, Double> series1) {
         double avg = 0;
 
@@ -230,6 +256,7 @@ public class Line {
     public XYChart.Series<Double, Double> Furie(XYChart.Series<Double, Double> series1) {
         double[] re = new double[N];
         double[] im = new double[N];
+
         series = new XYChart.Series<>();
 
         for (int i = 0; i < N; i++)
@@ -471,5 +498,104 @@ public class Line {
             series3.getData().add(new XYChart.Data<>((float) i, (float)re1[i] + im1[i]));
         }
         return series3;
+    }
+
+    public double max(XYChart.Series<Double, Double> series1){
+        double max = Double.NEGATIVE_INFINITY;
+
+        for (int i = 0; i < series1.getData().size(); i++){
+            if (series1.getData().get(i).getYValue() > max){
+                max = series1.getData().get(i).getYValue();
+            }
+        }
+
+        return max;
+    }
+
+    public double min(XYChart.Series<Double, Double> series1){
+        double min = Double.POSITIVE_INFINITY;
+
+        for (int i = 0; i < series1.getData().size(); i++){
+            if (series1.getData().get(i).getYValue() < min){
+                min = series1.getData().get(i).getYValue();
+            }
+        }
+
+        return min;
+    }
+
+    public double average(XYChart.Series<Double, Double> series1){
+        double average = 0.d;
+
+        for (int i = 0; i < series1.getData().size(); i++){
+            average += series1.getData().get(i).getYValue();
+        }
+        average /= series1.getData().size();
+
+        return average;
+    }
+
+    public double dispersion(XYChart.Series<Double, Double> series1){
+        double dispersion = 0.d;
+        double avg = average(series1);
+
+        for (int i = 0; i < series1.getData().size(); i++){
+            dispersion += Math.pow(series1.getData().get(i).getYValue() - avg, 2);
+        }
+        dispersion /= series1.getData().size();
+
+        return dispersion;
+    }
+
+    public double averagesquare(XYChart.Series<Double, Double> series1){
+        double averagesquare = 0.d;
+
+        for (int i = 0; i < series1.getData().size(); i++){
+            averagesquare += Math.pow(series1.getData().get(i).getYValue(), 2);
+        }
+        averagesquare /= series1.getData().size();
+
+        return averagesquare;
+    }
+
+    public double standartdeviation(XYChart.Series<Double, Double> series1){
+        return Math.sqrt(dispersion(series1));
+    }
+
+    public double averagesquaredeviation(XYChart.Series<Double, Double> series1){
+        return Math.sqrt(averagesquare(series1));
+    }
+
+    public double centralmoment3(XYChart.Series<Double, Double> series1){
+        double centralmoment3 = 0.d;
+        double avg = average(series1);
+
+        for (int i = 0; i < series1.getData().size(); i++){
+            centralmoment3 += Math.pow(series1.getData().get(i).getYValue() - avg, 3);
+        }
+        centralmoment3 /= series1.getData().size();
+
+        return centralmoment3;
+    }
+
+    public double coeffasimmetria(XYChart.Series<Double, Double> series1){
+        return (centralmoment3(series1))/(Math.pow(standartdeviation(series1), 3));
+    }
+
+    public double centralmoment4(XYChart.Series<Double, Double> series1){
+        double centralmoment4 = 0.d;
+        double avg = average(series1);
+        int result = 0;
+
+        for (int i = 0; i < series1.getData().size(); i++){
+            centralmoment4 += Math.pow(series1.getData().get(i).getYValue() - avg, 4);
+        }
+        centralmoment4 /= series1.getData().size();
+
+        return centralmoment4;
+    }
+
+    public double coeffexcess(XYChart.Series<Double, Double> series1){
+        return (centralmoment4(series1))/(Math.pow(standartdeviation(series1), 4));
     }
 }

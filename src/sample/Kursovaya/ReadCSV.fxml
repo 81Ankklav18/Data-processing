@@ -7,71 +7,74 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.AreaChart?>
-<GridPane minWidth="1000" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Kursovaya.ReadCSV">
+<GridPane minWidth="1000" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Kursovaya.ReadCSV">
 
-    <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+    <Button onAction="#newBuildIt" text="BuildIt!" GridPane.columnIndex="0" GridPane.columnSpan="2"
+            GridPane.rowIndex="0"/>
 
-    <Button onAction="#newCorrelationIt" text="CorrelationIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+    <Button onAction="#newCorrelationIt" text="CorrelationIt!" GridPane.columnIndex="0" GridPane.columnSpan="2"
+            GridPane.rowIndex="1"/>
 
-    <Button onAction="#newFurieIt" text="FurieIt!" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+    <Button onAction="#newFurieIt" text="FurieIt!" GridPane.columnIndex="0" GridPane.columnSpan="2"
+            GridPane.rowIndex="2"/>
 
     <LineChart fx:id="chart1" GridPane.columnIndex="2" GridPane.rowIndex="3">
         <xAxis>
-            <NumberAxis side="BOTTOM" />
+            <NumberAxis side="BOTTOM"/>
         </xAxis>
         <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis side="LEFT"/>
         </yAxis>
     </LineChart>
 
-    <LineChart fx:id="chart2" GridPane.columnIndex="3" GridPane.rowIndex="3" >
+    <LineChart fx:id="chart2" GridPane.columnIndex="3" GridPane.rowIndex="3">
         <xAxis>
-            <NumberAxis side="BOTTOM" />
+            <NumberAxis side="BOTTOM"/>
         </xAxis>
         <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis side="LEFT"/>
         </yAxis>
     </LineChart>
 
-    <LineChart fx:id="chart3" GridPane.columnIndex="2" GridPane.rowIndex="4" >
+    <LineChart fx:id="chart3" GridPane.columnIndex="2" GridPane.rowIndex="5">
         <xAxis>
-            <NumberAxis side="BOTTOM" />
+            <NumberAxis side="BOTTOM"/>
         </xAxis>
         <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis side="LEFT"/>
         </yAxis>
     </LineChart>
 
-    <LineChart fx:id="chart4" GridPane.columnIndex="3" GridPane.rowIndex="4" >
+    <LineChart fx:id="chart4" GridPane.columnIndex="3" GridPane.rowIndex="5">
         <xAxis>
-            <NumberAxis side="BOTTOM" />
+            <NumberAxis side="BOTTOM"/>
         </xAxis>
         <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis side="LEFT"/>
         </yAxis>
     </LineChart>
+
+    <Button onAction="#newGoogleAnalysis" GridPane.rowIndex="4" GridPane.columnIndex="2" text="Analysis"/>
 
     <columnConstraints>
-        <ColumnConstraints minWidth="70" />
-        <ColumnConstraints hgrow="ALWAYS" />
-        <ColumnConstraints hgrow="ALWAYS" />
-        <ColumnConstraints hgrow="ALWAYS" />
-        <ColumnConstraints hgrow="ALWAYS" />
-        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints minWidth="70"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
     </rowConstraints>
 
 </GridPane>
