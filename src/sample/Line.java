@@ -190,7 +190,7 @@ public class Line {
             series3.getData().add(new XYChart.Data<>(Double.valueOf(series3.getData().size()-i), series1.getData().get(i-1).getYValue()));
         }
 
-        return Convalution(series2, series3);
+        return Convalution(series3, series2);
     }
 
     public XYChart.Series<Double, Double> SelfCorrelation(XYChart.Series<Double, Double> series1, XYChart.Series<Double, Double> series2) {

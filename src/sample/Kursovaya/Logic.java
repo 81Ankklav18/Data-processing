@@ -21,10 +21,6 @@ public class Logic extends ReadCSV implements Cloneable {
         data = getData(csvpath);
     }
 
-    /*Logic(String csvpath) throws FileNotFoundException {
-        data = getData(csvpath);
-    }*/
-
     Logic(ArrayList<String> arrayList) {
         data = arrayList;
     }
@@ -46,7 +42,7 @@ public class Logic extends ReadCSV implements Cloneable {
     public XYChart.Series<Double, Double> createLine(int firstIndex, int secondIndex) throws FileNotFoundException {
         XYChart.Series<Double, Double> strseries = new XYChart.Series<>();
         for (int i = 4; i + 24 <= data.size() - 1; i += 6) {
-            strseries.getData().add(new XYChart.Data<>((double)(i+2)/6, Double.valueOf(data.get(i + 6))));
+            strseries.getData().add(new XYChart.Data<>((double) (i + 2) / 6, Double.valueOf(data.get(i + 6))));
         }
 
         XYChart.Series<Double, Double> series = new XYChart.Series<>();
@@ -59,8 +55,6 @@ public class Logic extends ReadCSV implements Cloneable {
         for (int i = 0; i < strseries.getData().size() + 20; i++) {
             series.getData().add(new XYChart.Data<>((double) i, k * i + b));
         }
-
-        //lch.getData().add(series);
 
         return series;
     }
@@ -90,7 +84,7 @@ public class Logic extends ReadCSV implements Cloneable {
             }
         }
         min = Double.POSITIVE_INFINITY;
-        for (int i = (int)fisrtIndex + window; i < strseries.getData().size(); i++) {
+        for (int i = (int) fisrtIndex + window; i < strseries.getData().size(); i++) {
             currVal = strseries.getData().get(i).getYValue().doubleValue();
             if (currVal < min) {
                 secondValue = strseries.getData().get(i).getYValue().doubleValue();
@@ -105,8 +99,6 @@ public class Logic extends ReadCSV implements Cloneable {
         for (int i = 0; i < strseries.getData().size() + 20; i++) {
             series.getData().add(new XYChart.Data<>((double) i, k * i + b));
         }
-
-        //lch.getData().add(series);
 
         return series;
     }
@@ -136,7 +128,7 @@ public class Logic extends ReadCSV implements Cloneable {
             }
         }
         max = Double.NEGATIVE_INFINITY;
-        for (int i = 0; i < (int)fisrtIndex - window; i++) {
+        for (int i = 0; i < (int) fisrtIndex - window; i++) {
             currVal = strseries.getData().get(i).getYValue().doubleValue();
             if (currVal > max) {
                 secondValue = strseries.getData().get(i).getYValue().doubleValue();
@@ -151,8 +143,6 @@ public class Logic extends ReadCSV implements Cloneable {
         for (int i = 0; i < strseries.getData().size() + 20; i++) {
             series.getData().add(new XYChart.Data<>((double) i, k * i + b));
         }
-
-        //lch.getData().add(series);
 
         return series;
     }
@@ -170,14 +160,6 @@ public class Logic extends ReadCSV implements Cloneable {
             bseries1.getData().add(new XYChart.Data<>(data.get(i + 2), Double.valueOf(data.get(i + 6))));
         }
 
-//        for (int i = 0; i < N; i++)
-//        {
-//            series1.getData().add(new XYChart.Data<>(Double.valueOf(i), Double.valueOf(rand.nextInt(highvalue)+lowvalue)));
-//        }
-        //series1.setName(csvpath);
-        //printLine(bch, series1, series2);
-
-        //bch.getData().add(bseries1);
         return bseries1;
     }
 
@@ -216,14 +198,7 @@ public class Logic extends ReadCSV implements Cloneable {
                     new XYChart.Data<>(bseries1.getData().get(i).getXValue(),
                             counts[bseries1.getData().get(i).getYValue().intValue()]));
         }
-//        for (int i = 0; i < N; i++)
-//        {
-//            series1.getData().add(new XYChart.Data<>(Double.valueOf(i), Double.valueOf(rand.nextInt(highvalue)+lowvalue)));
-//        }
-        //series1.setName(csvpath);
-        //printLine(bch, series1, series2);
 
-        //bch.getData().add(bseries1);
         return bseries1;
     }
 
@@ -291,7 +266,7 @@ public class Logic extends ReadCSV implements Cloneable {
             double randval = c * rand.nextDouble();
             series1.getData().add(new XYChart.Data<Double, Double>(
                     (double) i
-                    , (double) a * c + i * (Math.exp(b * i)) + (d * Math.sin(i / d)) * (randval))
+                    , (double) a * c + i * (Math.exp(b * i)) + (d * (d * Math.sin(i / d))) * (randval))
             );
         }
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.Menu"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <Button text="Построить график линейной функции" fx:id="LinearButton" onAction="#newLFWindow" GridPane.rowIndex="0"/>
+
+    <Button text="Построить график встроенной случайной функции" fx:id="JavaRandomButton" onAction="#newJRWindow" GridPane.rowIndex="1"/>
+
+    <Button text="Построить график из файла" fx:id="ReadDatButton" onAction="#newRDWindow" GridPane.rowIndex="2"/>
+
+    <Button text="Построить полигармоническую функцию" fx:id="PolygarmonicButton" onAction="#newPGWindow" GridPane.rowIndex="3"/>
+
+    <Button text="Построить кардиограмму" fx:id="CardioButton" onAction="#newCWindow" GridPane.rowIndex="4"/>
+
+    <Button text="Фильтр" fx:id="FiltrButton" onAction="#newFlWindow" GridPane.rowIndex="5"/>
+
+    <Button text="Wav" fx:id="WavButton" onAction="#newWavWindow" GridPane.rowIndex="6"/>
+
+    <Button text="AntiTrend" fx:id="AntiTrendButton" onAction="#newAntiTrend" GridPane.rowIndex="7"/>
+
+    <Button text="ReadCSV" fx:id="ReadCSV" onAction="#newReadCSV" GridPane.rowIndex="8"/>
+
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+    </rowConstraints>
+
+</GridPane>
